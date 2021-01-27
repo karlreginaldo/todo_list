@@ -1,6 +1,7 @@
+import 'package:TodoList/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'pages/main_page.dart';
+import 'package:TodoList/widgets/background.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: MainPage(),
+      home: Scaffold(
+        body: BackGround(
+          child: MainPage(),
+        ),
+      ),
     );
   }
 }
