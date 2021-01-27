@@ -1,3 +1,4 @@
+import 'package:TodoList/assets/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -9,7 +10,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Hello'),
+      child: Text(
+        'Hello',
+        style: bigFont,
+      ),
     );
   }
 }
