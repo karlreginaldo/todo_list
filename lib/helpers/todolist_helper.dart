@@ -24,12 +24,12 @@ class TodoListHelper {
 
   Future<Database> get database async {
     if (_database == null) {
-      _database = await initializedDatbase();
+      _database = await initializedDatabase();
     }
     return _database;
   }
 
-  initializedDatbase() async {
+  initializedDatabase() async {
     var dir = await getDatabasesPath();
     var path = dir + 'todo.db';
 

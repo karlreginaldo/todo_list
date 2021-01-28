@@ -13,8 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: Scaffold(
-        body: BackGround(
-          child: MainPage(),
+        body: Stack(
+          children: [
+            BackGround(),
+            MainPage(),
+          ],
         ),
       ),
     );
