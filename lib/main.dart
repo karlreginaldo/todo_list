@@ -16,8 +16,11 @@ class MyApp extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            BackGround(),
-            MainPage(),
+            BackGround(
+              child: SingleChildScrollView(
+                child: MainPage(),
+              ),
+            )
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-String tableName = 'todolist';
+String tableName = 'char';
 String columnId = 'id';
 String columnTitle = 'title';
 String columnDescription = 'description';
@@ -35,7 +35,7 @@ class TodoListHelper {
 
     return openDatabase(path, version: 1, onCreate: (db, version) {
       db.execute('''
-      create table $tableName($columnId integer primary key autoincrement, $columnTitle text not  null, $columnDescription text not null, $columnDate text not null, $columnIcon text not null);
+      create table $tableName($columnId integer primary key autoincrement, $columnTitle text not  null, $columnDescription text not null, $columnDate text not null);
       ''');
     });
   }

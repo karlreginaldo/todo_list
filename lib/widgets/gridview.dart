@@ -1,6 +1,8 @@
 import 'package:TodoList/assets/colors/colors.dart';
+import 'package:TodoList/services/todolist_services.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GridViewWidget extends StatelessWidget {
   @override
@@ -23,10 +25,11 @@ class GridViewContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
-      children: List.generate(100, (index) {
+      children: List.generate(
+          Get.find<TodoListService>().todolistContent.length, (index) {
         return Center(
           child: Text(
-            'Item $index',
+            Get.find<TodoListService>().todolistContent[index].title,
             style: Theme.of(context).textTheme.headline5,
           ),
         );

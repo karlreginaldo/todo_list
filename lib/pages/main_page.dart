@@ -1,6 +1,9 @@
+import 'package:TodoList/models/todolist_model.dart';
+import 'package:TodoList/services/todolist_services.dart';
 import 'package:TodoList/widgets/gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainPage extends StatefulWidget {
@@ -9,14 +12,48 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  TodoListModel model;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Header(),
-        GridViewWidget(),
-      ],
+    return GetBuilder<TodoListService>(
+      init: TodoListService(),
+      builder: (context) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Header(),
+            RaisedButton(
+              onPressed: () {
+                model = TodoListModel(
+                    'Meeting', 'This is meeting', 'January 26 2001');
+
+                Get.find<TodoListService>().createData(model);
+              },
+              child: Text('Create'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Get.find<TodoListService>().readData();
+              },
+              child: Text('Read'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Get.find<TodoListService>().deleteData();
+              },
+              child: Text('Delete'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Get.find<TodoListService>().testPrint();
+              },
+              child: Text('Test'),
+            ),
+            GridViewWidget(),
+          ],
+        );
+      },
     );
   }
 }
