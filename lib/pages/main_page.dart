@@ -1,4 +1,3 @@
-import 'package:TodoList/assets/fonts/fonts.dart';
 import 'package:TodoList/widgets/gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,11 +11,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [Header(), GridViewWidget()],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Header(),
+        GridViewWidget(),
+      ],
     );
   }
 }
@@ -31,6 +31,9 @@ class Header extends StatelessWidget {
       child: Column(
         children: [
           AppBarHeader(),
+          SizedBox(
+            height: 50,
+          ),
           DescriptionHeader(),
         ],
       ),
@@ -69,6 +72,9 @@ class DescriptionHeader extends StatelessWidget {
         Text(
           'Hey Karl,',
           style: GoogleFonts.poppins(fontSize: 36, color: Colors.white),
+        ),
+        SizedBox(
+          height: 25,
         ),
         Text(
           '''Do you want to plan a trip, meeting or party? Let me help you!''',
