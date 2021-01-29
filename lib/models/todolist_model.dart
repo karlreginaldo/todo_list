@@ -2,6 +2,5 @@ class TodoListModel {
   String title;
   String description;
   String date;
-  String iconName;
-  TodoListModel(title, description, date, iconName);
+  TodoListModel(this.title, this.description, this.date);
 }
