@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-String tableName = 'char';
+String tableName = 'chardsa';
 String columnId = 'id';
 String columnTitle = 'title';
 String columnDescription = 'description';

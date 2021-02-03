@@ -1,34 +1,67 @@
 import 'package:TodoList/helpers/todolist_helper.dart';
 import 'package:TodoList/models/todolist_model.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TodoListService extends GetxController {
   TodoListService();
   TodoListHelper helper = TodoListHelper();
-  List todolistContent = [];
+  List<TodoListModel> todolistContent = [];
   TodoListModel model;
+  DateTime time;
+  bool isTitleNull = false;
+  bool isDescriptionNull = false;
   createData(TodoListModel model) async {
-    var db = await this.helper.database;
-    readData();
-
-    return await db.insert(
-      tableName,
-      model.getMap(),
-    );
+    print('List: $todolistContent');
+    Database db = await this.helper.database;
+    return await db.insert(tableName, model.getMap());
   }
 
   readData() async {
-    var db = await this.helper.database;
+    Database db = await this.helper.database;
     List<Map<String, dynamic>> list = await db.query(tableName);
-    return todolistContent = list;
+    List<TodoListModel> listTempStorage = [];
+    var model = list.map(
+      (indexContent) => listTempStorage.add(
+        TodoListModel(
+          indexContent['title'],
+          indexContent['description'],
+          indexContent['date'],
+          indexContent['id'],
+        ),
+      ),
+    );
+    print('Model: $model');
+    return todolistContent = listTempStorage;
   }
 
-  testPrint() async {
-    print(todolistContent);
+  updateData() {}
+
+  deleteData(String id) async {
+    Database db = await this.helper.database;
+    return await db.rawDelete('''
+    delete from $tableName where $columnId = $id
+    ''');
   }
 
-  deleteData() async {
-    var db = await this.helper.database;
-    await db.delete(tableName);
+  String dateNow() {
+    time = DateTime.now();
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    var d = new DateTime.now();
+    var monthName = months[d.month - 1];
+    return '$monthName ${time.day} ${time.year}';
   }
 }

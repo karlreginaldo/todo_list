@@ -1,7 +1,18 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
-double fontSize;
+TextStyle titleFont({double fontSize, Color color, FontWeight fontWeight}) {
+  return GoogleFonts.workSans(
+    fontSize: fontSize,
+    color: color,
+    fontWeight: fontWeight,
+  );
+}
 
-TextStyle bigFont = GoogleFonts.bebasNeue();
-TextStyle smallFont = GoogleFonts.questrial();
+TextStyle bodyFont({double fontSize, Color color, FontWeight fontWeight}) {
+  return GoogleFonts.lato(
+    fontSize: fontSize,
+    color: color,
+    fontWeight: fontWeight,
+  );
+}
