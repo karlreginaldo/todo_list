@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            HeaderWidget(false),
+            HeaderWidget(false, FaIcon(FontAwesomeIcons.bars)),
             Stack(
               children: [
                 customTextField(),

@@ -9,6 +9,7 @@ class TodoListService extends GetxController {
   List<TodoListModel> todolistContent = [];
   TodoListModel model;
   DateTime time;
+  bool isEditing = false;
   bool isTitleNull = false;
   bool isDescriptionNull = false;
   createData(TodoListModel model) async {
@@ -21,21 +22,27 @@ class TodoListService extends GetxController {
     Database db = await this.helper.database;
     List<Map<String, dynamic>> list = await db.query(tableName);
     List<TodoListModel> listTempStorage = [];
-    var model = list.map(
-      (indexContent) => listTempStorage.add(
-        TodoListModel(
-          indexContent['title'],
-          indexContent['description'],
-          indexContent['date'],
-          indexContent['id'],
-        ),
-      ),
-    );
-    print('Model: $model');
+    list
+        .map(
+          (indexContent) => listTempStorage.add(
+            TodoListModel(
+              indexContent['title'],
+              indexContent['description'],
+              indexContent['date'],
+              indexContent['id'],
+            ),
+          ),
+        )
+        .toList();
     return todolistContent = listTempStorage;
   }
 
-  updateData() {}
+  updateData(int id, String newValue) async {
+    Database db = await this.helper.database;
+    return await db.rawUpdate(
+        '''update $tableName set $columnDescription = '$newValue' where $columnId = $id''');
+    // UPDATE COMPANY SET ADDRESS = 'Texas' WHERE ID = 6;
+  }
 
   deleteData(String id) async {
     Database db = await this.helper.database;
